@@ -31,23 +31,42 @@ class MainClass {
     Console.Write("Possui plano de Saude ? (Desconto 15%)  \n1 - Sim / 2 - Não >>");
     novo_usuario.set_plano(int.Parse(Console.ReadLine()));
 
-    Console.Write("Insira a data da Consulta >>");
+    Console.Write("Insira a data da Consulta (Formato 12/12/12) >>");
     novo_usuario.set_data_consulta(Console.ReadLine());
   
-    Console.Write("Insira o Horario para Consulta >>");
+    Console.Write("Insira o Horario para Consulta (Formato 12:12) >>");
     novo_usuario.set_horario_consulta(Console.ReadLine());
 
-    Console.Write("Insira a data de Nascimento >>");
+    Console.Write("Insira a data de Nascimento (Formato 12/12/12) >>");
     novo_usuario.set_data_nascimento(Console.ReadLine());
 
     Console.Write("Insira seu Sexo >> ");
     novo_usuario.set_sexo(Console.ReadLine());
 
-    //Calculo do Orçamento
+    //Geramento do Comprovante
 
+    int decis;
+
+    Console.Write("Deseja Gerar O Comprovante da Consulta ? 1-Sim / 2-Não \n>>");
+    decis = int.Parse(Console.ReadLine());
+
+    if (decis == 1){
+      Console.WriteLine(comprovante.gera_compro(novo_usuario.get_nome(),novo_usuario.get_horario_consulta(),novo_usuario.get_data_consulta(),novo_usuario.get_especialidade()));
+
+      //Calculo do Orçamento
+      Console.WriteLine(orca.calculo_consu(novo_usuario.get_plano(),novo_usuario.get_especialidade()));
+
+      Console.WriteLine($"Pedido de Consulta Realizado,aguarde a confirmação em seu email cadastrado {novo_usuario.get_email()}");
+      }
+   
+    else{
+      
     
-
-    Console.WriteLine(orca.calculo_consu(novo_usuario.get_plano(),novo_usuario.get_especialidade()));
+        //Calculo do Orçamento
+      Console.WriteLine(orca.calculo_consu(novo_usuario.get_plano(),novo_usuario.get_especialidade()));
+       
+      Console.WriteLine($"Pedido de Consulta Realizado,aguarde a confirmação em seu email cadastrado {novo_usuario.get_email()}");
+    }
     
   }
 }
